@@ -20,8 +20,9 @@ public class PurchaseOrderDetail extends ModelBase {
     @Column(precision = 16, scale = 6)
     private BigDecimal unitCost;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private MeasureUnit measureUnit;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false) //TODO: correct relationship ?
+    private Unit unit;
+
 
     @Column(precision = 16, scale = 6)
     private BigDecimal totalAmount;
@@ -58,15 +59,6 @@ public class PurchaseOrderDetail extends ModelBase {
     public void setUnitCost(BigDecimal unitCost) {
         this.unitCost = unitCost;
     }
-
-    public MeasureUnit getMeasureUnit() {
-        return measureUnit;
-    }
-
-    public void setMeasureUnit(MeasureUnit measureUnit) {
-        this.measureUnit = measureUnit;
-    }
-
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
@@ -99,4 +91,11 @@ public class PurchaseOrderDetail extends ModelBase {
         this.providerItemCode = providerItemCode;
     }
 
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
 }
