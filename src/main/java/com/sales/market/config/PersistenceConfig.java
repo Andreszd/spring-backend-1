@@ -4,7 +4,6 @@
 
 package com.sales.market.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -22,8 +21,8 @@ public class PersistenceConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("");
-        mailSender.setPassword("");
+        mailSender.setUsername("edsonrosas321@gmail.com");
+        mailSender.setPassword("yypovcncsgbbfxwv");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");

@@ -35,4 +35,4 @@ build/
 
 ## properties
 src/main/resources/application.properties
-
+src/main/java/com/sales/market/config/PersistenceConfig.java
