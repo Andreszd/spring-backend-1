@@ -1,11 +1,12 @@
 package com.sales.market.model.purchases;
 
+import com.sales.market.dto.purchasesDto.UnitDto;
 import com.sales.market.model.ModelBase;
 
 import javax.persistence.Entity;
 
 @Entity
-public class Unit extends ModelBase {
+public class Unit extends ModelBase<UnitDto> {
     
     private String name;
     private String description;
