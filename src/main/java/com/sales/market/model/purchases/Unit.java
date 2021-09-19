@@ -1,4 +1,6 @@
-package com.sales.market.model;
+package com.sales.market.model.purchases;
+
+import com.sales.market.model.ModelBase;
 
 import javax.persistence.Entity;
 

@@ -1,36 +1,57 @@
-/**
- * @author: Edson A. Terceros T.
- */
-
 package com.sales.market.model.purchases;
 
+
 import com.sales.market.model.Item;
+import com.sales.market.model.ModelBase;
 
-public class ProviderItem {
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import java.math.BigDecimal;
 
+@Entity
+public class ProviderItem extends ModelBase {
+
+    @OneToOne
     private Provider provider;
-    //codigo con el que el proveedor conoce al item
-    private String providerItemCode;
 
-    //facilitara los queries
-    private String providerCode;
-
+    @OneToOne
     private Item item;
 
-    //facilitara los queries
-    private String itemCode;
+    @OneToOne
+    private Unit unit;
 
-    private MeasureUnit measureUnit;
+    private BigDecimal itemPrice;
 
-    private Double price;
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
 
     public void setProvider(Provider provider) {
         this.provider = provider;
-        this.providerCode = provider.getCode();
+    }
+
+    public BigDecimal getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(BigDecimal itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public void setItem(Item item) {
         this.item = item;
-        this.itemCode = item.getCode();
     }
+
 }

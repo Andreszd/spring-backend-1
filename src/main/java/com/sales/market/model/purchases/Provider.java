@@ -2,14 +2,16 @@ package com.sales.market.model.purchases;
 
 import com.sales.market.model.ModelBase;
 
+import javax.annotation.processing.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Provider extends ModelBase {
-
+    @Column(unique = true)
     private String name;
-
-    private String code;
 
     public String getName() {
         return name;
@@ -19,11 +21,6 @@ public class Provider extends ModelBase {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+
 }
