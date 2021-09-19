@@ -109,7 +109,7 @@ public class DevelopmentBootstrap implements ApplicationListener<ContextRefreshe
         user.setEmail(email);
         user.setEnabled(true);
         user.setSystem(system);
-        user.setPassword("$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.");
+        user.setPassword("$2a$10$fbCy15sMusK3MB8GoF65y.PdkhMOjnUYLWA7P1GJFssYFYLMv.GWm");
         user.setEmployee(employee);
 
         role.setId(1L);
