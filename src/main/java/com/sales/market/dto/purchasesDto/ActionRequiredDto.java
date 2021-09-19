@@ -1,17 +1,11 @@
-/**
- * @author: Edson A. Terceros T.
- */
+package com.sales.market.dto.purchasesDto;
 
-package com.sales.market.model.purchases;
+import com.sales.market.dto.DtoBase;
+import com.sales.market.model.purchases.ActionRequired;
+import com.sales.market.model.purchases.PurchaseOrder;
 
-import com.sales.market.dto.purchasesDto.ActionRequiredDto;
-import com.sales.market.model.ModelBase;
+public class ActionRequiredDto extends DtoBase<ActionRequired> {
 
-import javax.persistence.ManyToOne;
-
-public class ActionRequired extends ModelBase<ActionRequiredDto> {
-
-    @ManyToOne
     private PurchaseOrder purchaseOrder;
     private String notes;
 
