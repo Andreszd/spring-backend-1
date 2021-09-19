@@ -22,6 +22,10 @@ public class Provider extends ModelBase<ProviderDto>{
         this.name = name;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Provider{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
