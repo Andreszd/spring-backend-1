@@ -21,10 +21,10 @@ public class PurchaseOrderController extends GenericController<PurchaseOrder, Pu
         this.service = service;
     }
 
-    @GetMapping()
+    /*@GetMapping()
     public List<PurchaseOrder> purchaseOrders(){
         return service.findAll();
-    }
+    }*/
 
     @Override
     protected GenericService getService() {
