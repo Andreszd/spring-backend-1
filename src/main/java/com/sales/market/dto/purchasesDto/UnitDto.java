@@ -1,13 +1,9 @@
-package com.sales.market.model.purchases;
+package com.sales.market.dto.purchasesDto;
 
-import com.sales.market.dto.purchasesDto.UnitDto;
-import com.sales.market.model.ModelBase;
+import com.sales.market.dto.DtoBase;
+import com.sales.market.model.purchases.Unit;
 
-import javax.persistence.Entity;
-
-@Entity
-public class Unit extends ModelBase<UnitDto> {
-    
+public class UnitDto extends DtoBase<Unit> {
     private String name;
     private String description;
 
@@ -26,6 +22,7 @@ public class Unit extends ModelBase<UnitDto> {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 }
+
+
+
