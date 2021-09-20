@@ -1,6 +1,7 @@
 package com.sales.market.model.purchases;
 
 
+import com.sales.market.dto.purchasesDto.ProviderItemDto;
 import com.sales.market.model.Item;
 import com.sales.market.model.ModelBase;
 
@@ -9,7 +10,7 @@ import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 @Entity
-public class ProviderItem extends ModelBase {
+public class ProviderItem extends ModelBase<ProviderItemDto> {
 
     @OneToOne
     private Provider provider;

@@ -5,9 +5,16 @@
 package com.sales.market;
 
 import com.sales.market.model.*;
+import com.sales.market.model.purchases.Provider;
+import com.sales.market.model.purchases.ProviderItem;
+import com.sales.market.model.purchases.Unit;
 import com.sales.market.repository.BuyRepository;
 import com.sales.market.repository.EmployeeRepository;
 import com.sales.market.service.*;
+import com.sales.market.service.purchasesService.ProviderItemServiceImpl;
+import com.sales.market.service.purchasesService.ProviderServiceImpl;
+import com.sales.market.service.purchasesService.PurchaseOrderDetailServiceImpl;
+import com.sales.market.service.purchasesService.UnitService;
 import io.micrometer.core.instrument.util.IOUtils;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -27,6 +34,9 @@ public class DevelopmentBootstrap implements ApplicationListener<ContextRefreshe
     private final SubCategoryService subCategoryService;
     private final ItemService itemService;
     private final ItemInstanceService itemInstanceService;
+    private final UnitService unitService;
+    private final ProviderItemServiceImpl providerItemService;
+    private final ProviderServiceImpl providerService;
     private EmployeeRepository employeeRepository;
     private UserService userService;
     private RoleService roleService;
@@ -38,13 +48,16 @@ public class DevelopmentBootstrap implements ApplicationListener<ContextRefreshe
 
 
     public DevelopmentBootstrap(BuyRepository buyRepository, CategoryService categoryService,
-            SubCategoryService subCategoryService, ItemService itemService, ItemInstanceService itemInstanceService,
-            EmployeeRepository employeeRepository, UserService userService, RoleService roleService) {
+                                SubCategoryService subCategoryService, ItemService itemService, ItemInstanceService itemInstanceService,
+                                UnitService unitService, PurchaseOrderDetailServiceImpl purchaseOrderDetailService, ProviderItemServiceImpl providerItemService, ProviderServiceImpl providerService, EmployeeRepository employeeRepository, UserService userService, RoleService roleService) {
         this.buyRepository = buyRepository;
         this.categoryService = categoryService;
         this.subCategoryService = subCategoryService;
         this.itemService = itemService;
         this.itemInstanceService = itemInstanceService;
+        this.unitService = unitService;
+        this.providerItemService = providerItemService;
+        this.providerService = providerService;
         this.employeeRepository = employeeRepository;
         this.userService = userService;
         this.roleService = roleService;
@@ -68,6 +81,19 @@ public class DevelopmentBootstrap implements ApplicationListener<ContextRefreshe
         persistItemInstances(maltinItem);
         initializeRoles();
         initializeEmployees();
+
+        Unit unit = persistUnit("Unidad", "Unidad Generica");
+        //
+
+        Provider provider1 = createProvider("CocaCola");
+        Provider provider2 = createProvider("Pepsi");
+        Provider provider3 = createProvider("IncaCola");
+        Provider provider4 = createProvider("Oriental");
+        createProviderItem(unit, maltinItem, new BigDecimal("100"), provider1);
+        createProviderItem(unit, maltinItem, new BigDecimal("8"), provider2);
+        createProviderItem(unit, maltinItem, new BigDecimal("500"), provider3);
+        createProviderItem(unit, maltinItem, new BigDecimal("10"), provider4);
+
     }
 
     private void initializeRoles() {
@@ -193,5 +219,31 @@ public class DevelopmentBootstrap implements ApplicationListener<ContextRefreshe
         Buy buy = new Buy();
         buy.setValue(value);
         buyRepository.save(buy);
+    }
+
+    private Unit persistUnit(String name, String description){
+       Unit unit = new Unit();
+       unit.setName(name);
+       unit.setDescription(description);
+       return unitService.save(unit);
+    }
+
+    private Provider createProvider(String name){
+        Provider provider = new Provider();
+        provider.setName(name);
+        return providerService.save(provider);
+    }
+
+    private ProviderItem createProviderItem(Unit unit,
+                                            Item item,
+                                            BigDecimal itemPrice,
+                                            Provider provider){
+        ProviderItem providerItem = new ProviderItem();
+        providerItem.setItem(item);
+        providerItem.setUnit(unit);
+        providerItem.setItemPrice(itemPrice);
+        providerItem.setProvider(provider);
+
+        return providerItemService.save(providerItem);
     }
 }

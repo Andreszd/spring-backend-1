@@ -1,41 +1,19 @@
-package com.sales.market.model.purchases;
+package com.sales.market.dto.purchasesDto;
 
-import com.sales.market.dto.purchasesDto.PurchaseOrderDetailDto;
+import com.sales.market.dto.DtoBase;
 import com.sales.market.model.Item;
-import com.sales.market.model.ModelBase;
+import com.sales.market.model.purchases.PurchaseOrder;
+import com.sales.market.model.purchases.PurchaseOrderDetail;
+import com.sales.market.model.purchases.Unit;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
-@Entity
-public class PurchaseOrderDetail extends ModelBase<PurchaseOrderDetailDto> {
-    @ManyToOne
+public class PurchaseOrderDetailDto extends DtoBase<PurchaseOrderDetail> {
     private PurchaseOrder purchaseOrder;
 
-    @Column(precision = 16, scale = 2, nullable = false)
     private BigDecimal quantity;
 
-    @Column(precision = 16, scale = 6)
     private BigDecimal unitCost;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false) //TODO: correct relationship ?
-    private Unit unit;
-
-
-    @Column(precision = 16, scale = 6)
-    private BigDecimal totalAmount;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Item item;
-
-    @Column(nullable = false)
-    private String itemCode;
-
-    @Column(nullable = false)
-    private String providerItemCode;
 
     public PurchaseOrder getPurchaseOrder() {
         return purchaseOrder;
@@ -60,6 +38,15 @@ public class PurchaseOrderDetail extends ModelBase<PurchaseOrderDetailDto> {
     public void setUnitCost(BigDecimal unitCost) {
         this.unitCost = unitCost;
     }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
@@ -92,11 +79,16 @@ public class PurchaseOrderDetail extends ModelBase<PurchaseOrderDetailDto> {
         this.providerItemCode = providerItemCode;
     }
 
-    public Unit getUnit() {
-        return unit;
-    }
+    private Unit unit;
 
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
+    private BigDecimal totalAmount;
+
+    private Item item;
+
+    private String itemCode;
+
+    private String providerItemCode;
 }
+
+
+
