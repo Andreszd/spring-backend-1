@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 
@@ -120,22 +121,23 @@ public class DevelopmentBootstrap implements ApplicationListener<ContextRefreshe
 
 
     private void persistItemInstances(Item maltinItem) {
-        ItemInstance maltinItem1 = createItem(maltinItem, "SKU-77721106006158", 5D);
-        ItemInstance maltinItem2 = createItem(maltinItem, "SKU-77721106006159", 5D);
-        ItemInstance maltinItem3 = createItem(maltinItem, "SKU-77721106006160", 5D);
-        ItemInstance maltinItem4 = createItem(maltinItem, "SKU-77721106006161", 5D);
+        ItemInstance maltinItem1 = createItem(maltinItem, "SKU-77721106006158", 5D,"2021-09-22");
+        ItemInstance maltinItem2 = createItem(maltinItem, "SKU-77721106006159", 5D,"2021-09-24");
+        ItemInstance maltinItem3 = createItem(maltinItem, "SKU-77721106006160", 5D,"2021-10-24");
+        ItemInstance maltinItem4 = createItem(maltinItem, "SKU-77721106006161", 5D,"2021-10-24");
         itemInstanceService.save(maltinItem1);
         itemInstanceService.save(maltinItem2);
         itemInstanceService.save(maltinItem3);
         itemInstanceService.save(maltinItem4);
     }
 
-    private ItemInstance createItem(Item maltinItem, String sku, double price) {
+    private ItemInstance createItem(Item maltinItem, String sku, double price,String dueDate) {
         ItemInstance itemInstance = new ItemInstance();
         itemInstance.setItem(maltinItem);
         itemInstance.setFeatured(true);
         itemInstance.setPrice(price);
         itemInstance.setIdentifier(sku);
+        itemInstance.setDueDate(LocalDate.parse(dueDate));
         return itemInstance;
     }
 

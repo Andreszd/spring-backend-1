@@ -30,7 +30,7 @@ public class PurchaseOrderServiceImpl extends GenericServiceImpl<PurchaseOrder> 
     public void changeState(PurchaseOrderState state, Long id){
         PurchaseOrder purchaseOrder = findById(id);
         purchaseOrder.setState(state);
-        PurchaseOrder purchaseOrderUpdate = purchaseOrderRepository.save(purchaseOrder);
+        PurchaseOrder purchaseOrderUpdate = getRepository().save(purchaseOrder);
     }
 
 

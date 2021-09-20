@@ -1,23 +1,21 @@
-package com.sales.market.model.purchases;
+package com.sales.market.dto.purchasesDto;
 
-import com.sales.market.model.ModelBase;
+import com.sales.market.dto.DtoBase;
+import com.sales.market.model.purchases.PurchaseOrder;
+import com.sales.market.model.purchases.PurchaseOrderPayment;
+import com.sales.market.model.purchases.PurchaseOrderPaymentKind;
 
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
-@Entity
-public class PurchaseOrderPayment extends ModelBase {
+public class PurchaseOrderPaymentDto extends DtoBase<PurchaseOrderPayment> {
 
     private String description;
-
-    //MONTOPAGO
     private BigDecimal payAmount;
-
-    //CLASEPAGO
-    @Enumerated(EnumType.STRING)
     private PurchaseOrderPaymentKind purchaseOrderPaymentKind;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private PurchaseOrder purchaseOrder;
 
     public String getDescription() {

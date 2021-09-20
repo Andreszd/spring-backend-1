@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(name = "UK_ITEMINSTANCE_IDENTIFIER", columnNames = {"identifier"})})
@@ -20,11 +22,9 @@ public class ItemInstance extends ModelBase<ItemInstanceDto> {
 
     private Boolean featured = Boolean.FALSE;
 
-    // todo generalmente se usa BigDecimal
     private Double price;
-    // todo estados AVAILABLE, SOLD, MAINTENANCE, ON_TRANSPORTATION
-    // private ItemInstanceState itemInstanceState;
-    // todo agregar totalCost
+
+    private LocalDate dueDate;
 
     private ItemInstanceStatus itemInstanceStatus;
 
@@ -58,6 +58,22 @@ public class ItemInstance extends ModelBase<ItemInstanceDto> {
 
     public void setFeatured(Boolean featured) {
         this.featured = featured;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public ItemInstanceStatus getItemInstanceStatus() {
+        return itemInstanceStatus;
+    }
+
+    public void setItemInstanceStatus(ItemInstanceStatus itemInstanceStatus) {
+        this.itemInstanceStatus = itemInstanceStatus;
     }
 
     /*@Override
