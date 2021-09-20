@@ -26,7 +26,7 @@ public class PurchaseOrderDetailController extends GenericController<PurchaseOrd
     protected GenericService getService() {
         return service;
     }
-
+    //FIXME change path
     @GetMapping("/provider-less-total-cost/{idItem}")
     public Provider getBestProvider(@PathVariable("idItem") Long idProvider){
         return service.getBestProvider(idProvider);
